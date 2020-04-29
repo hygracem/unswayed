@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_142533) do
+ActiveRecord::Schema.define(version: 2020_04_29_041929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "country"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "reporter_id"
+    t.index ["reporter_id"], name: "index_articles_on_reporter_id"
+  end
+
+  create_table "reporters", force: :cascade do |t|
+    t.string "name"
+    t.string "media"
+    t.string "ideology"
+    t.integer "fact_check_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,8 +43,27 @@ ActiveRecord::Schema.define(version: 2020_04_28_142533) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
+    t.string "ideology"
+    t.string "country"
+    t.integer "rating"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_articles", force: :cascade do |t|
+    t.integer "ref_article"
+    t.string "ideology"
+    t.integer "fact_check_rating"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "article_id"
+    t.bigint "user_id"
+    t.index ["article_id"], name: "index_users_articles_on_article_id"
+    t.index ["user_id"], name: "index_users_articles_on_user_id"
+  end
+
+  add_foreign_key "articles", "reporters"
+  add_foreign_key "users_articles", "articles"
+  add_foreign_key "users_articles", "users"
 end
