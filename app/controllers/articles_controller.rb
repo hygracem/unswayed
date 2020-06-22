@@ -14,6 +14,12 @@ class ArticlesController < ApplicationController
   #   redirect_to article_path(@article)
   end
 
+  def update
+    if @article.update(article_params)
+      redirect_to dashboard_path
+    end
+  end
+
   def destroy
   end
 
