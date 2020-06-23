@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
+# require 'news-api'
+
   def index
+    # @articles = Article.all("c48e5c6d51fa49b88c7598db0356abf7").to_h
     @articles = Article.all
     # where(date: today.beginning_of_day..today.end_of_day)
   end
