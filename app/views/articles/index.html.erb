@@ -1,2 +1,9 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<div class="cta">
+
+    <h2>Coronavirus</h2>
+    <% if @articles.nil? %>
+    <h1 align="center"><%="We cannot find your location"%></h1>
+    <% else %>
+    <h1 align="center"><%="Today's article #{@articles} "%></h1>
+    <% end %>
+</div>
