@@ -8,13 +8,16 @@ class ArticlesController < ApplicationController
       Authorization: "Bearer #{ENV['NEWS_API_KEY']}"
     }
     articles_response = RestClient.get("http://newsapi.org/v2/everything?q=#{keyword}", header)
-    JSON.parse(articles_response)["articles"].first["title"]
+    JSON.parse(articles_response)["articles"]
+
+  # when(:publishedAt => Time.zone.today - 60..Time.zone.today)
   end
 
   def index
     # @articles = policy_scope(Article.all, policy_scope_class: ArticlesPolicy::Scope)
     # authorize @articles
-    @articles = policy_scope(fetch_keyword_articles('coronavirus'), policy_scope_class: ArticlesPolicy::Scope)
+    # @test = policy_scope(fetch_keyword_articles('coronavirus'), policy_scope_class: ArticlesPolicy::Scope)
+    @articles = policy_scope(fetch_keyword_articles('coronavirus').select { |x| x["publishedAt"].partition("T").first.between?((Date.today - 60).to_s, Date.today.to_s) }, policy_scope_class: ArticlesPolicy::Scope)
     # had to force the policy
     # need to save it
     # where(date: today.beginning_of_day..today.end_of_day)
@@ -43,3 +46,5 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :country)
   end
 end
+
+
