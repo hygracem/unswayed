@@ -19,3 +19,25 @@
 .nav-item a {
   color: black;
 }
+
+.navbar-secondary {
+  justify-content: space-between;
+  background: white;
+}
+
+.navbar-secondary .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-secondary .navbar-brand img {
+  width: 40px;
+}
+
+.nav-second-item {
+  font-size: 16px;
+  margin-left: 50px;
+}
+
+.nav-second-item a {
+  color: black;
+}

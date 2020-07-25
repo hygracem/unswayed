@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :articles, through: :users_articles
   validates :nickname, presence: true
   validates :email, presence: true
+  has_one_attached :photo
 end

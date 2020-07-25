@@ -1,50 +1,77 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-unswayed">
   <div class="container text-center">
-  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag ("logo.png") %>
-  <% end %>
-  <ul class="nav navbar-nav" >
-    <li class="nav-item">
-      <%= link_to "About us", root_path, class: "nav_link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "About us", root_path, class: "nav_link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "About us", root_path, class: "nav_link" %>
-    </li>
-  </ul>
+    <% end %>
+    <ul class="nav navbar-nav" >
+      <li class="nav-item">
+        <%= link_to "About us", root_path, class: "nav_link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About us", root_path, class: "nav_link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About us", root_path, class: "nav_link" %>
+      </li>
+    </ul>
 
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <%= link_to "Suggestions", "#", class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <%= current_user.email %>
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% if current_user.image_url.nil? %>
+          <%= image_tag "user_1.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+          <%= image_src = current_user.image_url %>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
-      <% else %>
+        <% else %>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
-      <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center">
+  <div class="title-wrapper">
+    <h1>UNSWAYED</h1>
+  </div>
+</div>
+
+<div class="navbar navbar-expand-sm navbar-light navbar-secondary">
+  <div class="container text-center">
+    <ul class="nav navbar-nav" >
+      <li class="nav-second-item">
+        <%= link_to "HOME", root_path, class: "nav_link" %>
+      </li>
+      <li class="nav-second-item">
+        <%= link_to "TOP NEWS", root_path, class: "nav_link" %>
+      </li>
+      <li class="nav-second-item">
+        <%= link_to "CONTRIBUTE TO ARTICLE", root_path, class: "nav_link" %>
+      </li>
+      <li class="nav-second-item">
+        <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+          <input name="sitesearch" type="hidden" value="example.com">
+          <input autocomplete="on" class="form-control search" name="q" placeholder="Search in Unswayed" required="required"  type="text">
+                </li>
+                <li class="nav-second-item">
+          <button class="button" type="submit">Search</button>
+        </form>
+      </li>
     </ul>
   </div>
 </div>
-</div>
+
