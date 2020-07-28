@@ -1,1 +1,10 @@
-
+<div class="container">
+ <div class="row center">
+  <div class="col-md-8">
+    <%= link_to "Recent Articles", root_path, class: "btn btn-gradient", id: 'article-index' %>
+  </div>
+</div>
+</div>
+<% @articles.each do |article| %>
+<%= render "shared/article_card", locals: { article: article } %>
+<% end %>

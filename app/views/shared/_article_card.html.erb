@@ -1,0 +1,17 @@
+<div class="container" id="<%=locals[:article].id%>">
+  <div class="row flex-start">
+    <div class="col-8 col-4">
+      <div class="card-product">
+        <% if locals[:article].image.nil? %>
+        <%= image_tag "news.jpg", :alt=> "banner", :height => '300px' %>
+        <% else %>
+        <%= cl_image_tag locals[:article].image.key, crop: :fill %>
+        <% end %>
+        <div class="card-product-infos">
+          <h1 class="max-lines"><%= locals[:article].title %></h1>
+          <h2 class="max-lines"><%= locals[:article].reporter.name %></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
