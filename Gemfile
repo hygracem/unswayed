@@ -45,6 +45,9 @@ gem 'simple_form'
 gem 'devise'
 gem 'pundit'
 gem 'cloudinary', '~> 1.12.0'
+gem 'httparty'
+gem 'open-uri'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'pry-byebug'
